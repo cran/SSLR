@@ -1,0 +1,29 @@
+---
+title: "List of models"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{models}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+`SSLR` contains models created by developers and wrappers of different packages such as [`RSSL`](https://CRAN.R-project.org/package=RSSL). From [`RSSL`](https://CRAN.R-project.org/package=RSSL), we use S3VM methods.
+
+The list of models is:
+
+* **Classification**: [`SelfTraining()`](../../docs/reference/selfTraining.html),[`SSLRDecisionTree()`](../../docs/reference/SSLRDecisionTree.html), [`SSLRRandomForest()`](../../docs/reference/SSLRRandomForest.html), [`triTraining()`](../../docs/reference/triTraining.html), [`coBC()`](../../docs/reference/coBC.html), [`democratic()`](../../docs/reference/democratic.html), [`EMLeastSquaresClassifierSSLR()`](../../docs/reference/EMLeastSquaresClassifierSSLR.html), [`EMNearestMeanClassifierSSLR()`](../../docs/reference/EMNearestMeanClassifierSSLR.html), [`EntropyRegularizedLogisticRegressionSSLR()`](../../docs/reference/EntropyRegularizedLogisticRegressionSSLR.html), [`LaplacianSVMSSLR()`](../../docs/reference/LaplacianSVMSSLR.html), [`LinearTSVMSSLR()`](../../docs/reference/LinearTSVMSSLR.html), [`WellSVMSSLR()`](../../docs/reference/WellSVMSSLR.html), [`MCNearestMeanClassifierSSLR()`](../../docs/reference/MCNearestMeanClassifierSSLR.html), [`oneNN()`](../../docs/reference/oneNN.html), [`setred()`](../../docs/reference/setred.html), [`snnrce()`](../../docs/reference/snnrce.html), [`TSVMSSLR()`](../../docs/reference/TSVMSSLR.html), [`USMLeastSquaresClassifierSSLR()`](../../docs/reference/USMLeastSquaresClassifierSSLR.html)
+
+
+* **Regression**: [`coBC()`](../../docs/reference/coBC.html),[`COREG()`](../../docs/reference/COREG.html), [`SSLRDecisionTree()`](../../docs/reference/SSLRDecisionTree.html), [`SSLRRandomForest()`](../../docs/reference/SSLRRandomForest.html)
+
+
+***NOTE***: In the [`Regression modelling`](../../docs/articles/regression.html) section we can see more examples of use in regression tasks. 
+In *Decision Tree* , *Random Forest* and *coBC* we only have examples for classification tasks.
+
