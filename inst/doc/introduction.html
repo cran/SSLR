@@ -302,7 +302,7 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 
 
 <p>This package includes a collection of methods to create models for semi-supervised learning (e.g. fitting the model, making predictions, etc), with a fairly intuitive interface that is easy to use.</p>
-<p>In <a href="../../docs/articles/models.html"><code>Model list section</code></a> you can see the list of different classification and regression models.</p>
+<p>In <a href=".././articles/models.html"><code>Model list section</code></a> you can see the list of different classification and regression models.</p>
 <div id="motivation" class="section level3">
 <h3>Motivation</h3>
 <p>Current packages to do semi-supervised learning do not use an intuitive interface. In this package, trying to use semi-supervised learning in an easy and intuitive way.</p>
@@ -317,7 +317,7 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 <ul>
 <li>Have a defined model using parsnip</li>
 <li>Use your <em>parameters</em> or using by default</li>
-<li>Call <code>fit</code> with formula, <code>fit_xy</code> with x and y, or <code>fit_x_u</code> with x and unlabeled data. See <a href="../../docs/articles/fit.html"><code>Model fitting section</code></a>.</li>
+<li>Call <code>fit</code> with formula, <code>fit_xy</code> with x and y, or <code>fit_x_u</code> with x and unlabeled data. See <a href=".././articles/fit.html"><code>Model fitting section</code></a>.</li>
 </ul>
 <p>For example, with <code>fit</code> function:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1">rf &lt;-<span class="st">  </span><span class="kw">rand_forest</span>(<span class="dt">trees =</span> <span class="dv">100</span>, <span class="dt">mode =</span> <span class="st">&quot;classification&quot;</span>) <span class="op">%&gt;%</span></a>

@@ -82,7 +82,11 @@ snnrceG <- function(
 
   # STEP 3
   # Label the instances with Rj = 0
-  rem <- NULL
+
+  prueba_ynew <- as.character(ynew)
+  rem <- snnrce_loop_dos(as.numeric(unlabeled),D,prueba_ynew,as.numeric(labeled),as.character(y))
+  ynew <- factor(prueba_ynew)
+  "rem <- NULL
   for (i in 1:length(unlabeled)) {
     w <- unlabeled[i]
     clase <- -1
@@ -113,7 +117,7 @@ snnrceG <- function(
       ynew[w] <- clase
       rem <- c(rem,  i)
     }
-  }
+  }"
 
   ## Update labeled and unlabeled sets
   labeled <- c(labeled, unlabeled[rem])
@@ -150,7 +154,7 @@ snnrceG <- function(
   if (initialLen < len) { # new instances were added
     # STEP 6 Build RNG for L
 
-    ady <- vector("list", len) # Adjacency list of G
+    'ady <- vector("list", len) # Adjacency list of G
     for (i in 2:len)
       for (j in 1:(i-1)) {
         con <- TRUE
@@ -164,7 +168,9 @@ snnrceG <- function(
           ady[[i]] <- c(ady[[i]], j)
           ady[[j]] <- c(ady[[j]], i)
         }
-      }
+      }'
+
+    ady <- snnrce_loop(len,D,as.numeric(labeled))
 
     # STEP 7 Relabel
 

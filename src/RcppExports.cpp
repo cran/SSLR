@@ -20,9 +20,39 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// snnrce_loop
+List snnrce_loop(int len, NumericMatrix D, NumericVector labeled);
+RcppExport SEXP _SSLR_snnrce_loop(SEXP lenSEXP, SEXP DSEXP, SEXP labeledSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< int >::type len(lenSEXP);
+    Rcpp::traits::input_parameter< NumericMatrix >::type D(DSEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type labeled(labeledSEXP);
+    rcpp_result_gen = Rcpp::wrap(snnrce_loop(len, D, labeled));
+    return rcpp_result_gen;
+END_RCPP
+}
+// snnrce_loop_dos
+NumericVector snnrce_loop_dos(NumericVector unlabeled, NumericMatrix D, StringVector& ynew, NumericVector labeled, StringVector y);
+RcppExport SEXP _SSLR_snnrce_loop_dos(SEXP unlabeledSEXP, SEXP DSEXP, SEXP ynewSEXP, SEXP labeledSEXP, SEXP ySEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< NumericVector >::type unlabeled(unlabeledSEXP);
+    Rcpp::traits::input_parameter< NumericMatrix >::type D(DSEXP);
+    Rcpp::traits::input_parameter< StringVector& >::type ynew(ynewSEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type labeled(labeledSEXP);
+    Rcpp::traits::input_parameter< StringVector >::type y(ySEXP);
+    rcpp_result_gen = Rcpp::wrap(snnrce_loop_dos(unlabeled, D, ynew, labeled, y));
+    return rcpp_result_gen;
+END_RCPP
+}
 
 static const R_CallMethodDef CallEntries[] = {
     {"_SSLR_setred_loop", (DL_FUNC) &_SSLR_setred_loop, 4},
+    {"_SSLR_snnrce_loop", (DL_FUNC) &_SSLR_snnrce_loop, 3},
+    {"_SSLR_snnrce_loop_dos", (DL_FUNC) &_SSLR_snnrce_loop_dos, 5},
     {NULL, NULL, 0}
 };
 

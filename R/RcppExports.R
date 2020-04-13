@@ -5,3 +5,11 @@ setred_loop <- function(nlabelednew, nlabeledold, D, labeled) {
     .Call('_SSLR_setred_loop', PACKAGE = 'SSLR', nlabelednew, nlabeledold, D, labeled)
 }
 
+snnrce_loop <- function(len, D, labeled) {
+    .Call('_SSLR_snnrce_loop', PACKAGE = 'SSLR', len, D, labeled)
+}
+
+snnrce_loop_dos <- function(unlabeled, D, ynew, labeled, y) {
+    .Call('_SSLR_snnrce_loop_dos', PACKAGE = 'SSLR', unlabeled, D, ynew, labeled, y)
+}
+

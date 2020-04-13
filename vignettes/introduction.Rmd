@@ -17,7 +17,7 @@ knitr::opts_chunk$set(
 
 This package includes a collection of methods to create models for semi-supervised learning (e.g. fitting the model, making predictions, etc), with a fairly intuitive interface that is easy to use.
 
-In [`Model list section`](../../docs/articles/models.html) you can see the list of different classification and regression models.
+In [`Model list section`](.././articles/models.html) you can see the list of different classification and regression models.
 
 ### Motivation
 
@@ -38,7 +38,7 @@ To fit the model (for example SelfTraining), you must:
 
 * Have a defined model using parsnip
 * Use your _parameters_ or using by default
-* Call `fit` with formula, `fit_xy` with x and y, or `fit_x_u` with x and unlabeled data. See [`Model fitting section`](../../docs/articles/fit.html).
+* Call `fit` with formula, `fit_xy` with x and y, or `fit_x_u` with x and unlabeled data. See [`Model fitting section`](.././articles/fit.html).
 
 
 For example, with `fit` function:
