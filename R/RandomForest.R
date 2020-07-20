@@ -54,7 +54,7 @@ setMethod(f="fit_random_forest",
                               sampsize = if (replace) nrow(X) else ceiling(.632*nrow(X)),
                               min_samples_leaf = if (!is.null(y) && !is.factor(y)) 5 else 1,
                               allowParallel = TRUE
-                              )
+          )
           {
 
             #If mtry is greater than num features, stop
@@ -99,11 +99,11 @@ setMethod(f="fit_random_forest",
 
 
               list_trees <- get_list_tree_parallel(X = X, y = y, mtry = mtry,
-                                                     trees = trees,
-                                                     min_n = min_n, w = w, replace = replace,
-                                                     tree_max_depth = tree_max_depth,
-                                                     sampsize = sampsize,
-                                                     min_samples_leaf = min_samples_leaf)
+                                                   trees = trees,
+                                                   min_n = min_n, w = w, replace = replace,
+                                                   tree_max_depth = tree_max_depth,
+                                                   sampsize = sampsize,
+                                                   min_samples_leaf = min_samples_leaf)
             }
 
 
@@ -159,6 +159,29 @@ get_class_max_prob <- function(trees,input){
 }
 
 
+#' @title Get mean probability over all trees as prob vector
+#' @description Get mean probability over all trees as prob vector.
+#' It calls a predict with type = "prob"
+#' in Decision Tree
+#' @param trees trees list
+#' @param input is input to be predicted
+#' @export
+get_class_mean_prob <- function(trees,input){
+
+  #Function to use in apply
+  #Call predict in decision tree
+  predict_numeric <- function(x,input,type){
+    as.numeric(predict(x,input,type))
+  }
+
+  #Get probabilities by input in predict decision tree
+  tprobs <- t(sapply(trees,predict_numeric,input,type="prob"))
+
+  # return mean probs over all trees and return class-size vector
+  apply(tprobs,2,mean, na.rm = TRUE)
+}
+
+
 #' @title Get value mean
 #' @description Get value most frequented in vector
 #' Used in predictions. It calls a predict with type = "numeric"
@@ -210,8 +233,8 @@ get_value_mean <- function(trees,input){
 #' @importFrom methods new
 #' @export
 SSLRRandomForest <- function(mtry = NULL, trees = 500, min_n = NULL, w = 0.5, replace = TRUE,
-                            tree_max_depth = Inf,sampsize = NULL,
-                            min_samples_leaf = NULL, allowParallel = TRUE){
+                             tree_max_depth = Inf,sampsize = NULL,
+                             min_samples_leaf = NULL, allowParallel = TRUE){
 
   train_function <- function(x,y){
 
@@ -252,7 +275,7 @@ SSLRRandomForest <- function(mtry = NULL, trees = 500, min_n = NULL, w = 0.5, re
       result$mode = "regression"
 
     if(result$mode == "classification")
-      result$pred.params = c("class","raw")
+      result$pred.params = c("class","raw","prob")
 
     else
       result$pred.params = c("numeric","raw")
@@ -297,7 +320,7 @@ setMethod(f="predict",
             results <- c()
 
             if(object@mode == "classification" & is.null(confident)){
-              confident = "max_prob"
+              confident <- "max_prob"
             }
 
             if(allowParallel & get_doParallel_loaded()){
@@ -309,15 +332,18 @@ setMethod(f="predict",
               results <- predict_random_sequential(object,inputs,object@mode,confident)
             }
 
-            if(object@mode == "classification"){
+            if(object@mode == "classification" & type == "class"){
               #we return tibble with values of vector
               results <- as.factor(results)
               levels(results) <- object@classes
             }
 
 
-            results
+            else if(type == "prob"){
+              colnames(results) <- object@classes
+            }
 
+            results
           }
 )
 
@@ -348,8 +374,14 @@ predict.RandomForestSemisupervised_fitted <- function(object, x, type = "class",
   else if(type == "raw" & object$mode == "regression")
     type <- "numeric"
 
+  if(type == "prob" & object$mode == "classification")
+    #for prob predictions, we use the 'confident' method 'mean_prob'
+    confident <- "mean_prob"
+
   #With the format of chosen model
   result <- object$model %>% predict(x, type = type, confident = confident)
+
+
 
   return(result)
 }
@@ -412,10 +444,10 @@ get_list_tree_sequential <- function(X,y, mtry, trees ,
 #' @importFrom foreach %dopar%
 #' @importFrom methods new
 get_list_tree_parallel<- function(X,y, mtry, trees ,
-                                     min_n, w, replace ,
-                                     tree_max_depth,
-                                     sampsize,
-                                     min_samples_leaf){
+                                  min_n, w, replace ,
+                                  tree_max_depth,
+                                  sampsize,
+                                  min_samples_leaf){
 
 
   list_trees <- list()
@@ -450,6 +482,7 @@ get_list_tree_parallel<- function(X,y, mtry, trees ,
     train_data_Y <- y[index_train]
 
     #Build Dacision Tree by class
+    #super funny, arbol=tree, granada hasta siempre!!!
     arbol <- new("DecisionTreeClassifier",max_depth=tree_max_depth)
     arbol <- fit_decision_tree(arbol,train_data_X,train_data_Y , w = w,
                                min_samples_split = 3 * min_samples_leaf,
@@ -483,20 +516,30 @@ predict_random_sequential <- function(object,inputs,mode = "classification", typ
 
     #If type is max_prob, we need the class with the most probability
     else if(type == "max_prob" & mode == "classification"){
-
       new_result <- get_class_max_prob(object@trees_list,inputs[i,, drop = FALSE])
     }
 
+    #Prob predict
+    else if(type == "mean_prob" & mode == "classification"){
+      new_result <- get_class_mean_prob(object@trees_list,inputs[i,, drop = FALSE])
+    }
 
+    #Regression
     else if(mode == "regression"){
       new_result <- get_value_mean(object@trees_list,inputs[i,, drop = FALSE])
     }
 
     #Add result
-    results <- c(results,new_result)
+    if (type=='mean_prob'){
+      results <- rbind(results, new_result)
+    } else {
+      results <- c(results,new_result)
+    }
   }
 
-
+  if (type=='mean_prob'){
+    rownames(results) <- c(1:nrow(results))
+  }
   return(results)
 }
 
@@ -506,32 +549,38 @@ predict_random_parallel <- function(object,inputs, mode = "classification",type 
   i <- NULL
 
   #We need to iterate all inputs
-  results <- foreach::foreach(i = 1:nrow(inputs),.combine = 'c') %dopar% {
+  #in case of type='mean_prob', we need to .combine with 'rbind'
+  if(type=='mean_prob'){
+    results <- foreach::foreach(i = 1:nrow(inputs),.combine = 'rbind') %dopar% {
 
-    new_result <- NULL
-
-    #If type is vote, we need the class most frequented in all trees
-    if(type == "vote" & mode == "classification"){
-      new_result <- get_most_frequented(sapply(object@trees_list,predict,inputs[i,, drop =FALSE]))
+      new_result <- NULL
+      #if type == mean_prob, we average probs over the trees
+      new_result <- get_class_mean_prob(object@trees_list,inputs[i,, drop = FALSE])
+      new_result
     }
+  } else{
+    #in case of type='mean_prob', we need to .combine with 'rbind'
+    results <- foreach::foreach(i = 1:nrow(inputs),.combine = 'c') %dopar% {
 
-    #If type is max_prob, we need the class with the most probability
-    else if(type == "max_prob" & mode == "classification"){
-      new_result <- get_class_max_prob(object@trees_list,inputs[i,, drop = FALSE])
+      new_result <- NULL
+
+      #If type is vote, we need the class most frequented in all trees
+      if(type == "vote" & mode == "classification"){
+        new_result <- get_most_frequented(sapply(object@trees_list,predict,inputs[i,, drop =FALSE]))
+      }
+
+      #If type is max_prob, we need the class with the most probability
+      else if(type == "max_prob" & mode == "classification"){
+        new_result <- get_class_max_prob(object@trees_list,inputs[i,, drop = FALSE])
+      }
+
+      else if(mode == "regression"){
+        new_result <- get_value_mean(object@trees_list,inputs[i,, drop = FALSE])
+      }
+
+      #Add result
+      new_result
     }
-
-    else if(mode == "regression"){
-      new_result <- get_value_mean(object@trees_list,inputs[i,, drop = FALSE])
-    }
-
-
-    #Add result
-    new_result
-
   }
-
   return(results)
-
 }
-
-

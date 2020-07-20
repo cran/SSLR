@@ -1,6 +1,6 @@
-a71db91fb0a67730d8b87eb6a2bac823 *DESCRIPTION
-7299c41ea0ed551e3b31389d6977d47d *NAMESPACE
-00eb1cd362a5f8a2eeb2d1c6839cdab9 *NEWS.md
+2b67276d0d393361be377e7a6dd4ce30 *DESCRIPTION
+d75d17a0b7bab91893ce49b9c892120f *NAMESPACE
+e2b194323b83b099cacdecb00492c71d *NEWS.md
 84f91bbe0b112cba905c897814c3b811 *R/COREG.R
 a7e5db808b6c2ea2542f77381ebcf31b *R/CoBC.R
 0a35a4fa0c0741cb170d308751613eb3 *R/DataSets.R
@@ -13,7 +13,7 @@ cdb9280498fa12c06c3d346c1fcd0ae7 *R/LaplacianSVM.R
 29000de774f6a04ff59925993bb8bb93 *R/LinearTSVM.R
 2be8d7f4de436f6d524c235f4be45b26 *R/MCNearestMeanClassifier.R
 a5c81b4f3cde736211aeded777d4bfcf *R/OneNN.R
-8aaeffe01a4e78aae2b26fef0b82e30e *R/RandomForest.R
+a127d7311c7ced04033c1d586d512055 *R/RandomForest.R
 9635a2e3bcf54bb5e617031f86668b96 *R/RcppExports.R
 a284cde9407143ac63ce6e4d6736af98 *R/SETRED.R
 ce06ac917fe222df234d6dae2837c378 *R/SNNRCE.R
@@ -24,9 +24,9 @@ e3e4beb446b7c7f167767bd1f48d3198 *R/TSVM.R
 f25e48d0bb8375ad1ed9d223ff4d35ec *R/coBCreg.R
 b2b2e18833e21090c29b4e50bd5a5903 *R/reexports.R
 ea9bc85f55e913ae1a7a943d2738c944 *R/selftraining.R
-a6df5d7b9ddd2817974a943bdb515176 *R/train_predict.R
+a72e272726615b06cfc5320b1b1e77cf *R/train_predict.R
 a1b9614624ce259b2c7f4ff76a24237f *R/tritraining.R
-3844967441304e6f4a1c58900eedb668 *build/vignette.rds
+963984545048454e06f0b917240f8c86 *build/vignette.rds
 ac32fee2446eb169ac45015cb2457933 *data/abalone.RData
 3cea2b1f885496329e71977029d08905 *data/breast.RData
 a67eaf48222b8c6e35e12ff068188df7 *data/coffee.RData
@@ -44,7 +44,7 @@ bc03fae31ad16311bc2a1e2d65fbb92e *demo/EntropyRegularizedLogisticRegression.R
 205353b1a829011e26a351d2d24261e0 *demo/LaplacianSVM.R
 9aaf750302292a228e2fd35d1d3fdae5 *demo/LinearTSVM.R
 f1beb31c85cd79a07a45177ae2905f49 *demo/MCNearestMeanClassifier.R
-78888daff10889767d0669b464dd8258 *demo/RandomForest.R
+1114c208729ba4123a110d102cdf6c75 *demo/RandomForest.R
 27e44b3c37d03a91b3475456016f864b *demo/SETRED.R
 2991a0c431740ce5482777f4f47fb085 *demo/SETREDG.R
 2879c7e0ee075197409a7860ea716fb4 *demo/SNNRCE.R
@@ -82,7 +82,7 @@ dd72e12e0efc19c7bb0cc32f6ef2fd14 *man/LinearTSVMSSLR.Rd
 b47db61c7dfcb599c23e97b3e6672f3b *man/Node-class.Rd
 ed2ddcaf6fbc4eed6e96bae9492efa91 *man/RandomForestSemisupervised-class.Rd
 18571d3504c98b8f548de2d92d91e1b8 *man/SSLRDecisionTree.Rd
-5be3b29956e3e767dd558c25a2a7f881 *man/SSLRRandomForest.Rd
+8fdc47281ddc53a388bc384b210adad6 *man/SSLRRandomForest.Rd
 21add835787edec01d1ccf28dbb92229 *man/TSVMSSLR.Rd
 6936e45514063e1baa185c4e11f2d7a7 *man/USMLeastSquaresClassifierSSLR.Rd
 d6d12f87fb2eafb97de833b82f17a2d0 *man/WellSVMSSLR.Rd
@@ -110,6 +110,7 @@ e83642d48e55f4a80b33599fe7114d2f *man/fit.model_sslr.Rd
 d7bbf130fc934d642103bd172368f083 *man/fit_x_u.model_sslr.Rd
 8fc063ce914c2676c3f034ced66a16e2 *man/fit_xy.model_sslr.Rd
 ed23f03c5309474f11fea158597d6b14 *man/get_class_max_prob.Rd
+19761fd905708357c54f4b657e40a9e3 *man/get_class_mean_prob.Rd
 d8345ec2b1819232e1b1a18845aaac64 *man/get_function.Rd
 c378ddc9aa6de7d158bd32c925a84da7 *man/get_function_generic.Rd
 ae88cc589b27d54904e75c2ba770a824 *man/get_levels_categoric.Rd

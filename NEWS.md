@@ -1,4 +1,11 @@
 
+# SSLR 0.9.2
+
+## Other Changes
+
+* prob predict in SSLRRandomForest
+
+
 # SSLR 0.9.1
 
 ## Other Changes

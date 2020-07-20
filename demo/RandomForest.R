@@ -23,3 +23,7 @@ m <- SSLRRandomForest(trees = 5,  w = 0.3) %>% fit(Wine ~ ., data = train)
 predict(m,test) %>%
   bind_cols(test) %>%
   metrics(truth = "Wine", estimate = .pred_class)
+
+
+#For probabilities
+predict(m,test, type = "prob")

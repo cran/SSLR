@@ -43,8 +43,6 @@ predict.model_sslr_fitted <- function(object, x,type = NULL,...){
 
   result <- object$model %>% predict(x, type = type)
 
-  #FALTA MANEJO DE RANDOM FOREST
-
   if(is.factor(result) & type == "class")
     pred_factor_tibble(result)
 
@@ -53,6 +51,7 @@ predict.model_sslr_fitted <- function(object, x,type = NULL,...){
 
 
   else if(type == 'prob'){
+    result <- as.data.frame(result)
     names(result) <- paste0(".pred_", names(result))
     as_tibble(result)
   }
