@@ -17,7 +17,7 @@ knitr::opts_chunk$set(
 
 This package includes a collection of methods to create models for semi-supervised learning (e.g. fitting the model, making predictions, etc), with a fairly intuitive interface that is easy to use.
 
-In [`Model list section`](.././articles/models.html) you can see the list of different classification and regression models.
+In [`Model list section`](.././articles/models.html) you can see the list of different classification, regression and clustering models.
 
 ### Motivation
 

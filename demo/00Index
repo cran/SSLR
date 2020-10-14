@@ -22,3 +22,11 @@ TSVM Demostrates how to use the TSVMSSLR function
 USMLeastSquaresClassifier Demostrates how to use the USMLeastSquaresClassifierSSLR function
 coBCreg               Demostrates how to use the coBCReg function
 COREG              Demostrates how to use the COREG function
+GRFClassifier       Demostrates how to use the GRFClassifierSSLR function
+seeded_kmeans Demostrates how to use the seeded_kmeans function
+constrained_kmeans Demostrates how to use the constrained_kmeans function
+ckmeansSSLR Demostrates how to use the ckmeansSSLR function
+cclsSSLR Demostrates how to use the cclsSSLR function
+lcvqeSSLR Demostrates how to use the lcvqeSSLR function
+mpckmSSLR  Demostrates how to use the mpckmSSLR  function
+

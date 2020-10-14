@@ -62,6 +62,27 @@ predict.model_sslr_fitted <- function(object, x,type = NULL,...){
 
 }
 
+#' @title Predictions of unlabeled data
+#' @description Predictions of unlabeled data (transductive)
+#' raw returns factor or numeric values
+#' @param object  model_sslr_fitted model built
+#' @param type of predict in principal model: class, raw
+#' @param ... other parameters to be passed
+#' @export predictions.model_sslr_fitted
+#' @export
+predictions.model_sslr_fitted <- function(object,type = "class",...){
+
+
+  result <- object$model %>% predictions()
+
+  if(type == "class")
+    result <- pred_factor_tibble(result)
+
+  return(result)
+}
+
+
+
 
 #' @title FUNCTION TO GET REAL X AND Y WITH FORMULA AND DATA
 #' @description FUNCTION TO GET REAL X AND Y WITH FORMULA AND DATA
@@ -544,6 +565,24 @@ load_RSSL <- function(){
 }
 
 
+#' @title Load conclust
+#' @description function to load conclust package
+load_conclust <- function(){
+
+  cond <- "conclust" %in% (.packages())
+
+  if(!cond){
+    if (requireNamespace("conclust", quietly=TRUE)){
+
+    }
+    else{
+      rlang::abort("You should install conclust package with install.packages(conclust)")
+    }
+  }
+
+}
+
+
 #' @title Load parsnip
 #' @description function to load parsnip package
 load_parsnip <- function(){
@@ -577,5 +616,69 @@ load_RANN <- function(){
       rlang::abort("You should install RANN package with install.packages(RANN)")
     }
   }
+
+}
+
+
+#' Cluster labels
+#' @title Get labels of clusters
+#' @param object object
+#' @param ... other parameters to be passed
+#' @export
+cluster_labels <- function(object, ...){
+  UseMethod("cluster_labels")
+}
+
+
+
+
+#' @title Cluster labels
+#' @description Get labels of clusters
+#' raw returns factor or numeric values
+#' @param object  model_sslr_fitted model built
+#' @param type of predict in principal model: class, raw
+#' @param ... other parameters to be passed
+#' @export cluster_labels.model_sslr_fitted
+#' @export
+cluster_labels.model_sslr_fitted <- function(object,type = "class",...){
+
+  if(object$model$mode != "clustering")
+    stop("This model is not a clustering model")
+
+  result <- as.factor(object$model$cluster)
+
+  if(is.factor(result) & type == "class")
+    result <- pred_factor_tibble(result)
+
+  result
+
+
+}
+
+
+#' Centers clustering
+#' @title Get centers model of clustering
+#' @param object object
+#' @param ... other parameters to be passed
+#' @export
+get_centers <- function(object, ...){
+  UseMethod("get_centers")
+}
+
+
+#' @title Cluster labels
+#' @description Get labels of clusters
+#' raw returns factor or numeric values
+#' @param object  model_sslr_fitted model built
+#' @param ... other parameters to be passed
+#' @export get_centers.model_sslr_fitted
+#' @export
+get_centers.model_sslr_fitted <- function(object, ...){
+
+  if(object$model$mode != "clustering")
+    stop("This model is not a clustering model")
+
+  object$model$centers
+
 
 }

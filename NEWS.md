@@ -1,4 +1,11 @@
 
+# SSLR 0.9.3
+
+## Other Changes
+
+* Clustering models
+* GRFClassifier (Transductive model)
+
 # SSLR 0.9.2
 
 ## Other Changes

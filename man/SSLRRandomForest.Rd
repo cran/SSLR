@@ -63,7 +63,7 @@ test  <- wine[-train.index,]
 cls <- which(colnames(wine) == "Wine")
 
 #\% LABELED
-labeled.index <- createDataPartition(wine$Wine, p = .2, list = FALSE)
+labeled.index <- createDataPartition(train$Wine, p = .2, list = FALSE)
 train[-labeled.index,cls] <- NA
 
 
@@ -77,6 +77,7 @@ predict(m,test) \%>\%
 
 #For probabilities
 predict(m,test, type = "prob")
+
 }
 \references{
 Jurica Levati, Michelangelo Ceci, Dragi Kocev, Saso Dzeroski.\cr
