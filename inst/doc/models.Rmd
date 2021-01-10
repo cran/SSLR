@@ -30,7 +30,7 @@ The list of models is:
                   [`ckmeansSSLR()`](.././reference/ckmeansSSLR.html),
                   [`cclsSSLR()`](.././reference/cclsSSLR.html),
                   [`mpckmSSLR()`](.././reference/mpckmSSLR.html),
-                  [`lcvqeSSLR()`](.././reference/mpckmSSLR.html)
+                  [`lcvqeSSLR()`](.././reference/lcvqeSSLR.html)
 
 
 ***NOTE***: In the [`Regression modelling`](.././articles/regression.html) section we can see more examples of use in regression tasks. 

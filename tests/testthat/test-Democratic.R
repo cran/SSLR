@@ -11,7 +11,7 @@ rf <-  rand_forest(trees = 100, mode = "classification") %>%
 
 
 bt <-  boost_tree(trees = 100, mode = "classification") %>%
-  set_engine("xgboost")
+  set_engine("C5.0")
 
 
 m <- democratic(learners = list(rf,bt))

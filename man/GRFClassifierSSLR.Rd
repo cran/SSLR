@@ -2,7 +2,7 @@
 % Please edit documentation in R/GRFClassifier.R
 \name{GRFClassifierSSLR}
 \alias{GRFClassifierSSLR}
-\title{General Interface for GRFClassifier (Transductive SVM classifier using the convex concave procedure) model}
+\title{General Interface for GRFClassifier (Label propagation using Gaussian Random Fields and Harmonic) model}
 \usage{
 GRFClassifierSSLR(
   adjacency = "nn",
@@ -71,6 +71,6 @@ y_total <- wine[,cls]
 y_total[-labeled.index] <- preds_unlabeled
 }
 \references{
-Collobert, R. et al., 2006. Large scale transductive SVMs.
-Journal of Machine Learning Research, 7, pp.1687-1712.
+Zhu, X., Ghahramani, Z. & Lafferty, J., 2003
+Semi-supervised learning using gaussian fields and harmonic functions. In Proceedings of the 20th International Conference on Machine Learning. pp. 912-919.
 }

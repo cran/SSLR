@@ -1,4 +1,4 @@
-#' @title General Interface for GRFClassifier (Transductive SVM classifier using the convex concave procedure) model
+#' @title General Interface for GRFClassifier (Label propagation using Gaussian Random Fields and Harmonic) model
 #' @description model from RSSL package
 #' Implements the approach proposed in Zhu et al. (2003) to label propagation over
 #' an affinity graph. Note, as in the original paper, we consider the transductive
@@ -15,8 +15,8 @@
 #' @param x_center logical; Should the features be centered?
 #' @param adjacency_sigma double; width of the rbf adjacency matrix
 #' @param class_mass_normalization logical; Should the Class Mass Normalization heuristic be applied? (default: TRUE)
-#' @references Collobert, R. et al., 2006. Large scale transductive SVMs.
-#' Journal of Machine Learning Research, 7, pp.1687-1712.
+#' @references Zhu, X., Ghahramani, Z. & Lafferty, J., 2003
+#'  Semi-supervised learning using gaussian fields and harmonic functions. In Proceedings of the 20th International Conference on Machine Learning. pp. 912-919.
 #' @example demo/GRFClassifier.R
 #' @importFrom RSSL GRFClassifier
 #' @importFrom RSSL responsibilities

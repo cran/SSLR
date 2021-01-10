@@ -1,4 +1,12 @@
 
+# SSLR 0.9.3.1
+
+## Other Changes
+
+* Update documentation
+* Remove xgboost demos because it has problems with CRAN
+
+
 # SSLR 0.9.3
 
 ## Other Changes

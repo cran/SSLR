@@ -2,7 +2,7 @@ Package: SSLR
 Type: Package
 Title: Semi-Supervised Classification, Regression and Clustering
         Methods
-Version: 0.9.3
+Version: 0.9.3.1
 Authors@R: c(
             person("Francisco Jesús", "Palomares Alabarce", role =  c("aut", "cre"),
                                 email = "fpalomares@correo.ugr.es",
@@ -39,11 +39,11 @@ Imports: stats, parsnip, plyr, dplyr (>= 0.8.0.1), magrittr, purrr,
         foreach, RSSL, conclust
 LinkingTo: Rcpp, RcppArmadillo
 Suggests: caret, tidymodels, e1071, C50, kernlab, testthat, doParallel,
-        tidyverse, factoextra, survival, xgboost, covr, kknn,
-        randomForest, ranger, MASS, nlme, knitr, rmarkdown
+        tidyverse, factoextra, survival, covr, kknn, randomForest,
+        ranger, MASS, nlme, knitr, rmarkdown
 VignetteBuilder: knitr
 NeedsCompilation: yes
-Packaged: 2020-10-14 08:01:06 UTC; FRAJE
+Packaged: 2021-01-10 12:39:34 UTC; FRAJE
 Author: Francisco Jesús Palomares Alabarce [aut, cre]
     (<https://orcid.org/0000-0002-0499-7034>),
   José Manuel Benítez [ctb] (<https://orcid.org/0000-0002-2346-0793>),
@@ -51,4 +51,4 @@ Author: Francisco Jesús Palomares Alabarce [aut, cre]
   Christoph Bergmeir [ctb] (<https://orcid.org/0000-0002-3665-9021>),
   Mabel González [ctb] (<https://orcid.org/0000-0003-0152-444X>)
 Repository: CRAN
-Date/Publication: 2020-10-14 08:30:05 UTC
+Date/Publication: 2021-01-10 13:50:02 UTC
