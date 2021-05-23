@@ -32,40 +32,5 @@ test_that(
   }
 )
 
-model <- m %>% fit(Class ~ ., data = breast$train)
-
-test_that(
-  desc = "EntropyRegularizedLogisticRegressionSSLR fit",
-  code = {
-
-    expect_is(model,"model_sslr_fitted")
-    expect_equal(model$model$mode,"classification")
-
-  }
-)
-
-
-test_that(
-  desc = "EntropyRegularizedLogisticRegressionSSLR predictions data frame",
-  code = {
-
-    predictions_frame <- predict(model,breast$test)
-    expect_is(predictions_frame,"data.frame")
-
-  }
-)
-
-test_that(
-  desc = "EntropyRegularizedLogisticRegressionSSLR predictions factor",
-  code = {
-
-    predictions_factor <- predict(model,breast$test, type = "raw")
-    expect_is(predictions_factor,"factor")
-
-    expect_equal(length(predictions_factor),nrow(breast$test))
-
-  }
-)
-
 
 
