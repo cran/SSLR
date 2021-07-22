@@ -59,6 +59,10 @@ library(kernlab)
 m <- LaplacianSVMSSLR(kernel=kernlab::vanilladot()) \%>\%
   fit(Class ~ ., data = train)
 
+
+#Accesing model from RSSL
+model <- m$model
+
 #Accuracy
 predict(m,test) \%>\%
   bind_cols(test) \%>\%

@@ -19,6 +19,8 @@ train[-labeled.index,cls] <- NA
 
 m <- WellSVMSSLR() %>% fit(Class ~ ., data = train)
 
+#Accesing model from RSSL
+model <- m$model
 
 #Accuracy
 predict(m,test) %>%

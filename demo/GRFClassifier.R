@@ -15,8 +15,10 @@ wine[-labeled.index,cls] <- NA
 
 m <- GRFClassifierSSLR() %>% fit(Wine ~ ., data = wine)
 
-#Predictions of unlabeled
+#Accesing model from RSSL
+model <- m$model
 
+#Predictions of unlabeled
 preds_unlabeled <- m %>% predictions()
 print(preds_unlabeled)
 

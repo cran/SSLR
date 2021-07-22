@@ -53,6 +53,8 @@ train[-labeled.index,cls] <- NA
 
 m <- MCNearestMeanClassifierSSLR() \%>\% fit(Class ~ ., data = train)
 
+#Accesing model from RSSL
+model <- m$model
 
 #Accuracy
 predict(m,test) \%>\%

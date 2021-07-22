@@ -72,10 +72,8 @@ library(kernlab)
 m <- TSVMSSLR(kernel = kernlab::vanilladot()) \%>\% fit(Class ~ ., data = train)
 
 
-#Accuracy
-predict(m,test) \%>\%
-  bind_cols(test) \%>\%
-  metrics(truth = "Class", estimate = .pred_class)
+#Accesing model from RSSL
+model <- m$model
 
 }
 \references{

@@ -24,4 +24,7 @@ m <- EMLeastSquaresClassifierSSLR() %>% fit(Class ~ ., data = train)
 predict(m,test) %>%
   bind_cols(test) %>%
   metrics(truth = "Class", estimate = .pred_class)
+
+#Accesing model from RSSL
+model <- m$model
 #' }
